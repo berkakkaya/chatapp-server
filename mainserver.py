@@ -10,6 +10,7 @@ from aiohttp import web #? Ağ içinde sunucunun yayın yapmasını sağlayan mo
 from src.cheaserDecrypt import decrypt #? Sezar yöntemiyle şifrelenmiş metinlerin şifresini çözen fonksiyon
 import src.rsa as rsa #? RSA şifrelemede ve şifre çözme işlemlerinde kullanılacak olan modül
 import json #? Veritabanını yönetmeyi kolaylaştıran, ayrıca JSON dilindeki veriyi Python diline çeviren modül
+import os #? İşletim sistemi dosyaları ile işlem yapabilmemizi sağlayan modül
 
 """
 ? Sunucu burada yapılandırılır.
@@ -21,7 +22,17 @@ sio = socketio.AsyncServer(async_mode="aiohttp")
 app = web.Application() #? Ağa yayın yapacak sunucu bileşeni hazırlanır.
 sio.attach(app) #? Sunucumuz yayın bileşenine bağlanır ve böylece sunucu istek gönderebilir veya alabilir.
 
-ADMINPASSWORD = "ADMIN"
+ADMINPASSWORD = "ADMIN" #? Yönetim konsolunun şifresi, yönetici komutlarında kullanılıyor.
+
+databaseTemplate = {"messageHistory": []}
+
+if os.name == "nt": identifier = "\\"
+else: identifier = "/"
+
+if not os.path.exists(".{0}database.json".format(identifier)):
+    with open(".{0}database.json".format(identifier), "w", encoding="utf-8") as f:
+        json.dump(databaseTemplate, f, indent=4)
+        f.close()
 
 @sio.on("newMessage")
 async def newMessage(sid, data):
