@@ -2,10 +2,14 @@
 
 ## Proje Hakkında
 
-Şifreli Mesajlaşma Uygulaması'nın sunucu kısmıdır.
-Bu proje Dündar Çiloğlu Programlama Takımı'nın kodları incelemesi ve geliştirilmesi için Github'a yüklenmiştir.
+Şifreli Mesajlaşma Uygulaması'nın sunucu kodlarıdır.
 
-**Not: _Bu projenin kaynak kodlarını bu grup dışında başka bir kişi ile paylaşmak yasaktır._**
+Projenin asıl amacı şifreleme sisteminin mantığını göstermektir ve Python'da bir mesajlaşma uygulamasının nasıl yapılabileceğini göstermektir.
+Eğitim amaçlı hazırlanmıştır. Projeyi kullanmak istiyorsanız aşağıdaki notu okuyun.
+
+_**Önemli Not: Hem sunucu hem de istemci uygulamalarının sade haliyle kullanılması tavsiye edilmez. Uygulamalarda güvenlik sorunları mevcut**_
+_**(paketi gönderme biçiminden kaynaklı) ve bazen hız problemleri yaşıyorlar**_
+_**(sorun RSA modülünden kaynaklı, çünkü anahtarları her seferinde sıfırdan üretiyor).**_
 
 _Not: Şifreli Mesajlaşma Uygulaması'nın istemci kodlarına [buradan ulaşabilirsiniz.](https://github.com/berkakkaya/chatapp-client)_
 
@@ -19,7 +23,7 @@ Kaynak kodlarını indirmek için şu komutları sırasıyla girin ve bu kodlar�
 
 ```sh
 git init
-git clone https://github.com/berkakkaya/chatapp-client.git
+git clone https://github.com/berkakkaya/chatapp-server.git
 git config --global user.name "Adınız Soyadınız" #Kendi adınızı ve soyadınızı tırnak içerisine girin.
 git config --global user.email "e-postanız@gmail.com" #Kendi ana e-posta adresinizi tırnak içerisine girin.
 ```

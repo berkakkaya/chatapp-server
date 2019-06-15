@@ -3,10 +3,6 @@
 
 """
 !              Şifreli Mesajlaşma Uygulaması - Sunucu
-!            Hazırlayanlar: Berk Akkaya ve Ozan Alptekin
-
-?=================== YAPILACAKLAR LİSTESİ =========================?
-* Şu anlık bir şey yok.
 """
 
 import socketio #? İstemciyle iletişime geçmemizi sağlayan modül
