@@ -45,22 +45,26 @@ async def newMessage(sid, data):
         owner = "[KULLANICI ADI HATASI]"
         data["username"] = "[KULLANICI ADI HATASI]"
         print("[UYARI]: Bir istemcinin gönderdiği mesaj isteğinde kullanıcı adı bulunamadı.")
-    print(data["message"], "şifreli")
 
     """
     ? Mesajın şifresi bu bölümde çözülür.
     ? Eğer istemciye başka bir şifreleme metodu eklendiyse çözücü modeli aşağıdaki hiyerarşiye uygun eklenmelidir.
     """
-    if data["encryptType"] == "cheaser":
-        message = decrypt(data["message"], data["number"])
-    elif data["encryptType"] == "rsa":
-        print(data["n"], "n")
-        print(data["e"], "e")
-        print(data["d"], "d")
-        message = rsa.SifreCoz(data["message"], data["n"], data["e"], data["d"])
 
     print("{0} adlı kullanıcı yeni bir mesaj gönderdi. Kullanıcı SID'si: {1}".format(owner, sid))
-    print("Mesaj:", message)
+
+    if data["encryptType"] == "cheaser":
+        print("Mesaj Sezar Şifreleme yöntemi ile şifrelenmiş.")
+        message = decrypt(data["message"], data["number"])
+    elif data["encryptType"] == "rsa":
+        print("Mesaj RSA yöntemi ile şifrelenmiş.")
+        print("\"n\" değeri:", data["n"])
+        print("\"e\" değeri:", data["e"])
+        print("\"d\" değeri", data["d"])
+        message = rsa.SifreCoz(data["message"], data["n"], data["e"], data["d"])
+    
+    print("Şifreli mesaj:", data["message"])
+    print("Şifresi çözülmüş mesaj:", message)
 
     splittedMessage = message.split(" ")
 
@@ -69,7 +73,7 @@ async def newMessage(sid, data):
             if splittedMessage[1] == ADMINPASSWORD: #? Komutun yanında verilen şifrenin doğru olup olmadığı kontrol edilir.
                 await clearHistory() #? Geçmiş temizleme komutu çağırılır.
         except:
-            pass
+            print("")
     else:
         finalMessage = "<font color=\"{0}\">{1}:</font> {2}<br>".format(data["color"], owner, message)
 
