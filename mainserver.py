@@ -60,7 +60,7 @@ async def newMessage(sid, data):
         print("Mesaj RSA yöntemi ile şifrelenmiş.")
         print("\"n\" değeri:", data["n"])
         print("\"e\" değeri:", data["e"])
-        print("\"d\" değeri", data["d"])
+        print("\"d\" değeri:", data["d"])
         message = rsa.SifreCoz(data["message"], data["n"], data["e"], data["d"])
     
     print("Şifreli mesaj:", data["message"])
