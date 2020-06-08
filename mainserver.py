@@ -44,14 +44,14 @@ async def newMessage(sid, data):
     except:
         owner = "[KULLANICI ADI HATASI]"
         data["username"] = "[KULLANICI ADI HATASI]"
-        print("[UYARI]: Bir istemcinin gönderdiği mesaj isteğinde kullanıcı adı bulunamadı.")
+        print("\n[UYARI]: Bir istemcinin gönderdiği mesaj isteğinde kullanıcı adı bulunamadı.")
 
     """
     ? Mesajın şifresi bu bölümde çözülür.
     ? Eğer istemciye başka bir şifreleme metodu eklendiyse çözücü modeli aşağıdaki hiyerarşiye uygun eklenmelidir.
     """
 
-    print("{0} adlı kullanıcı yeni bir mesaj gönderdi. Kullanıcı SID'si: {1}".format(owner, sid))
+    print("\n{0} adlı kullanıcı yeni bir mesaj gönderdi. Kullanıcı SID'si: {1}".format(owner, sid))
 
     if data["encryptType"] == "cheaser":
         print("Mesaj Sezar Şifreleme yöntemi ile şifrelenmiş.")
@@ -122,7 +122,7 @@ async def clearHistory():
     """
     ? Geçmiş temizleme komutunu gönderen fonksiyondur.
     """
-    print("SUNUCU: Geçmiş temizleniyor...")
+    print("\nBİLGİLENDİRME: Geçmiş temizleniyor...")
     with open("./database.json", "r+", encoding="utf-8") as f:
         cache = json.load(f)
         cache["messageHistory"].append("!clearHistory")
